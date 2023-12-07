@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './index.scss'
 
-const Question = ({ question, onNext }) => {
+const Question = ({ question, onNext, onShowHint }) => {
   const [selectedAnswer, setSelectedAnswer] = useState()
   const [isShowHint, setIsShowHint] = useState()
   const [isShowAnswer, setIsShowAnswer] = useState()
@@ -15,6 +15,7 @@ const Question = ({ question, onNext }) => {
   useEffect(() => {
     const timerId = setTimeout(() => {
       if (!selectedAnswer) {
+        onShowHint(question.hint)
         setIsShowHint(true)
       }
     }, 2000)

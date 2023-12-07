@@ -1,10 +1,10 @@
 "use client"
 import React, { useState } from 'react'
+import toast, { Toaster } from 'react-hot-toast'
 import Question from './Question'
 import "./index.scss"
 import "./styles.css"
 import Button from './components/Button'
-
 const START_GAME = 0
 
 const Home = () => {
@@ -27,11 +27,16 @@ const Home = () => {
 
   return (
     <div className='home'>
+      <Toaster />
       {currentQuestion === START_GAME
         ? <Button onClick={onClickStart} text={'Start Quiz'} />
         : isGameEnded
           ? <div onClick={() => setCurrentQuestion(0)}>Results</div>
-          : <Question question={questions[currentQuestion - 1]} onNext={onClickNext} />
+          : (<Question
+              question={questions[currentQuestion - 1]}
+              onNext={onClickNext}
+              onShowHint={hint => toast.success(hint, { icon: '💡' })}
+            />)
       }
 
     </div>
