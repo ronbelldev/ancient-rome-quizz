@@ -15,14 +15,14 @@ const Question = ({ question, onNext, onShowHint }) => {
       if (!selectedAnswer) {
         onShowHint(question.hint)
       }
-    }, 2000)
+    }, 10000)
     return () => clearTimeout(timerId)
   }, [question])
 
   useEffect(() => {
     const timerId = setTimeout(() => {
       setIsShowAnswer(true)
-    }, 4000)
+    }, 20000)
     return () => clearTimeout(timerId)
   }, [question])
 
