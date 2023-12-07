@@ -9,11 +9,14 @@ const Question = ({ question, onNext }) => {
   useEffect(() => {
     setIsShowAnswer(false)
     setIsShowHint(false)
+    setSelectedAnswer()
   }, [question])
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      setIsShowHint(true)
+      if (!selectedAnswer) {
+        setIsShowHint(true)
+      }
     }, 2000)
     return () => clearTimeout(timerId)
   }, [question])
@@ -47,8 +50,12 @@ const Question = ({ question, onNext }) => {
         {question.choices.map((choice, index) => (
           <li
             key={index}
-            className={isShowAnswer && index === question.answer_index ? 'selected' : ''}
-            onClick={() => onNext() || handleAnswerClick(index)}
+            className={(isShowAnswer || index === selectedAnswer) && index === question.answer_index
+                ? 'correct'
+                :  index === selectedAnswer
+                    ? 'wrong'
+                    : ''}
+            onClick={() => (!selectedAnswer && selectedAnswer !== 0) && handleAnswerClick(index)}
           >
             {choice}
           </li>
