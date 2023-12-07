@@ -3,12 +3,10 @@ import './index.scss'
 
 const Question = ({ question, onNext, onShowHint }) => {
   const [selectedAnswer, setSelectedAnswer] = useState()
-  const [isShowHint, setIsShowHint] = useState()
   const [isShowAnswer, setIsShowAnswer] = useState()
 
   useEffect(() => {
     setIsShowAnswer(false)
-    setIsShowHint(false)
     setSelectedAnswer()
   }, [question])
 
@@ -16,7 +14,6 @@ const Question = ({ question, onNext, onShowHint }) => {
     const timerId = setTimeout(() => {
       if (!selectedAnswer) {
         onShowHint(question.hint)
-        setIsShowHint(true)
       }
     }, 2000)
     return () => clearTimeout(timerId)
@@ -46,7 +43,6 @@ const Question = ({ question, onNext, onShowHint }) => {
   return (
     <div className='question'>
       <div className='question-title'>{question.question}</div>
-      {isShowHint && <p>{question.hint}</p>}
       <ul>
         {question.choices.map((choice, index) => (
           <li
