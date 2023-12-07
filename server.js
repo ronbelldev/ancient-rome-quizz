@@ -8,8 +8,25 @@ const questionsModule = require('./questions')
 app.use(cors())
 
 app.get('/api/questions', (req, res) => {
-  const randomQuestions = questionsModule.questions.slice(0, 5)
-  res.json(randomQuestions)
+  const questions= questionsModule.questions
+  let randomIndexesOfQuestions = []
+  let questionsToAsk = [];
+
+  const choose = () => {
+    let randomIndex = Math.round(Math.random() * (questions.length - 1))
+
+    if (!randomIndexesOfQuestions.includes(randomIndex)) {
+      randomIndexesOfQuestions.push(randomIndex)
+    }
+
+    if (randomIndexesOfQuestions.length === 5) {
+      questionsToAsk = randomIndexesOfQuestions.map(indexOfQuestion => questions[indexOfQuestion])
+    } else {
+      choose()
+    }
+  }
+  choose()
+  res.json(questionsToAsk)
 })
 
 app.listen(port, () => {
