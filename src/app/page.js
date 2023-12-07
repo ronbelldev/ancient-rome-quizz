@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Question from './Question'
 import "./index.scss"
 import "./styles.css"
@@ -11,7 +11,7 @@ const Home = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [questions, setQuestions] = useState([])
   const isGameEnded = currentQuestion === questions.length + 1
-
+    console.log("questions: ", questions)
   const onClickStart = () => {
     fetch('http://localhost:3001/api/questions')
       .then(res => res.json())
@@ -26,7 +26,7 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className='home'>
       {currentQuestion === START_GAME
         ? <Button onClick={onClickStart} text={'Start Quiz'} />
         : isGameEnded

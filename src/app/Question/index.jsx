@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import './index.scss'
+
 const Question = ({ question, onNext }) => {
   const [selectedAnswer, setSelectedAnswer] = useState()
   const [isShowHint, setIsShowHint] = useState()
@@ -15,7 +17,7 @@ const Question = ({ question, onNext }) => {
     }, 2000)
     return () => clearTimeout(timerId)
   }, [question])
-  
+
   useEffect(() => {
     const timerId = setTimeout(() => {
       setIsShowAnswer(true)
@@ -39,14 +41,14 @@ const Question = ({ question, onNext }) => {
 
   return (
     <div className='question'>
-      <h2>{question.question}</h2>
+      <div className='question-title'>{question.question}</div>
       {isShowHint && <p>{question.hint}</p>}
       <ul>
         {question.choices.map((choice, index) => (
           <li
             key={index}
-            className={index === selectedAnswer ? 'selected' : ''}
-            onClick={() => handleAnswerClick(index)}
+            className={isShowAnswer && index === question.answer_index ? 'selected' : ''}
+            onClick={() => onNext() || handleAnswerClick(index)}
           >
             {choice}
           </li>
