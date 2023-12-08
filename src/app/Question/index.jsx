@@ -66,7 +66,7 @@ const Question = ({ question, onNext, onShowHint, increaseScore }) => {
         </div>
         <Button
             isDisabled={selectedAnswer === undefined}
-            text='Submit answer'
+            text='Next'
             onClick={() => setIsShowAnswer(true)}
         />
       </div>

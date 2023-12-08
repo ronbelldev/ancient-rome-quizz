@@ -11,7 +11,7 @@ const Home = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [questions, setQuestions] = useState([])
   const [totalScore, setTotalScore] = useState(0)
-
+    const startText = 'How much do you know about\n Ancient Rome ?'
   const isGameEnded = currentQuestion === questions.length + 1
 
   const onClickStart = () => {
@@ -38,7 +38,13 @@ const Home = () => {
   return (
     <div className='home'>
       {currentQuestion === START_GAME
-        ? <Button onClick={onClickStart} text={'Start Quiz'} />
+        ?
+          <div className='start-home'>
+              <div className='start-text'>
+                  {startText}
+              </div>
+              <Button onClick={onClickStart} text={'Start Quiz'} />
+          </div>
         : isGameEnded
           ? (<div className='results-wrapper'>
                   <div className='results'>Your score is: {totalScore}!</div>
@@ -52,10 +58,11 @@ const Home = () => {
               question={questions[currentQuestion - 1]}
               onNext={onNext}
               onShowHint={hint => toast(hint, {
+                className: 'toast',
                 icon: '💡',
                 duration: 10000,
                 position: 'bottom-center',
-                style: { fontSize: '18px', marginBottom: '100px', iconSize: '100px'}
+                style: { fontSize: '18px', iconSize: '100px'}
               })}
               increaseScore={increaseScore}
             />)

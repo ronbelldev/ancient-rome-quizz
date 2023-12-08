@@ -8,9 +8,10 @@ body {
     justify-content: center;
     height: 100vh;
 }
-
-.hi {
-    color: red;
+.toast {
+    @media screen and (min-height: 780px) {
+        margin-bottom: 100px;
+    }
 }
 
 .home {
@@ -26,7 +27,27 @@ body {
     aspect-ratio: 1/1;
     background-size: cover;
     background-repeat: no-repeat;
+    .start-home {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .start-text {
+        color: black;
+        font-size: 44px;
+        font-weight: 500;
+        background: rgb(#e4d5b7, 0.5);
+        padding: 80px 30px;
+        height: 130px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        font-family: fantasy;
+        white-space: pre;
+        text-align: center;
 
+    }
 }
 
 .results-wrapper {
