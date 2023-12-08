@@ -33,12 +33,10 @@ const Home = () => {
 
   const increaseScore = () => {
       setTotalScore(totalScore + 1)
-      onNext()
   }
 
   return (
     <div className='home'>
-      <Toaster />
       {currentQuestion === START_GAME
         ? <Button onClick={onClickStart} text={'Start Quiz'} />
         : isGameEnded
@@ -53,11 +51,16 @@ const Home = () => {
           : (<Question
               question={questions[currentQuestion - 1]}
               onNext={onNext}
-              onShowHint={hint => toast.success(hint, { icon: '💡' })}
+              onShowHint={hint => toast(hint, {
+                icon: '💡',
+                duration: 10000,
+                position: 'bottom-center',
+                style: { fontSize: '18px', marginBottom: '100px', iconSize: '100px'}
+              })}
               increaseScore={increaseScore}
             />)
       }
-
+        <Toaster />
     </div>
   )
 }

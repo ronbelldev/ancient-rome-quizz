@@ -16,16 +16,37 @@ body {
 .home {
     display: flex;
     justify-content: center;
-    width: 60%;
-    max-width: 60%;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    background-color: #5234eb;
+    align-items: center;
+    background-image: url('../../public/ancient-rome.jpg');
+    object-fit: contain;
+    aspect-ratio: 1/1;
+    background-size: cover;
+    background-repeat: no-repeat;
+
 }
 
 .results-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 32px;
+    height: 30%;
+    display: flex;
+    width: 30%;
+    padding: 18px;
+    align-items: center;
+    justify-content: center;
+    background: rgb(#e4d5b7, 0.7);
+    border-radius: 8px;
 }
 
 .results {
-    font-size: 22px;
+    font-size: 36px;
+    font-weight: 500;
+    text-shadow: 1px 1px #e4d5b7;
+    color: black;
+
 }

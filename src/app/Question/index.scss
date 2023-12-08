@@ -1,4 +1,35 @@
- .question-title {
-    font-size: 24px;
-    margin-bottom: 12px;
- }
+.question-wrapper {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 48px;
+    width: 900px;
+    height: 430px;
+    display: flex;
+    color: black;
+    background: rgb(#e4d5b7, 0.7);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .question-title {
+        font-size: 24px;
+        margin-bottom: 24px;
+    }
+
+    button {
+        align-self: center;
+        background-color: #e4d5b7;
+        height: fit-content;
+        padding: 16px;
+        border-radius: 30px;
+        color: black;
+        position: absolute;
+        bottom: 18px;
+        margin-top: 4px;
+
+        &:hover:not(:disabled) {
+            background-color: green;
+            color: white;
+        }
+    }
+}

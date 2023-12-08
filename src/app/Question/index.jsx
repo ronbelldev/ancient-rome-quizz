@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import Button from '@/app/components/Button'
 import './index.scss'
 
 const Question = ({ question, onNext, onShowHint, increaseScore }) => {
@@ -12,9 +13,7 @@ const Question = ({ question, onNext, onShowHint, increaseScore }) => {
 
   useEffect(() => {
     const timerId = setTimeout(() => {
-      if (!selectedAnswer) {
         onShowHint(question.hint)
-      }
     }, 10000)
     return () => clearTimeout(timerId)
   }, [question])
@@ -40,30 +39,37 @@ const Question = ({ question, onNext, onShowHint, increaseScore }) => {
     setSelectedAnswer(index)
     if (index === question.answer_index) {
       increaseScore()
-    } else {
-      setIsShowAnswer(true)
     }
   }
 
   return (
-    <div className='question'>
-      <div className='question-title'>{question.question}</div>
-      <ul>
-        {question.choices.map((choice, index) => (
-          <li
-            key={index}
-            className={(isShowAnswer || index === selectedAnswer) && index === question.answer_index
-                ? 'correct'
-                :  index === selectedAnswer
-                    ? 'wrong'
-                    : ''}
-            onClick={() => (!selectedAnswer && selectedAnswer !== 0) && handleAnswerClick(index)}
-          >
-            {choice}
-          </li>
-        ))}
-      </ul>
-    </div>
+      <div className='question-wrapper'>
+        <div className='question'>
+          <div className='question-title'>{question.question}</div>
+          <ul>
+            {question.choices.map((choice, index) => (
+              <li
+                key={index}
+                className={index === selectedAnswer && !isShowAnswer
+                    ? 'selected'
+                    : isShowAnswer && index === question.answer_index
+                      ? 'correct'
+                        : index === selectedAnswer
+                        ? 'wrong'
+                        : ''}
+                onClick={() => handleAnswerClick(index)}
+              >
+                {choice}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <Button
+            isDisabled={selectedAnswer === undefined}
+            text='Submit answer'
+            onClick={() => setIsShowAnswer(true)}
+        />
+      </div>
   )
 }
 

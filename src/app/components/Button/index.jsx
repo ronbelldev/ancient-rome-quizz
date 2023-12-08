@@ -1,10 +1,10 @@
 import React from 'react'
 import './index.scss'
 
-const Button = ({ onClick, text }) => 
-    <div className="button" onClick={onClick}>
+const Button = ({ onClick, text, isDisabled }) =>
+    <button className="button" onClick={() => !isDisabled && onClick()} disabled={isDisabled}>
         {text}
-    </div>
+    </button>
 
 
 export default Button
