@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './index.scss'
 
-const Question = ({ question, onNext, onShowHint }) => {
+const Question = ({ question, onNext, onShowHint, increaseScore }) => {
   const [selectedAnswer, setSelectedAnswer] = useState()
   const [isShowAnswer, setIsShowAnswer] = useState()
 
@@ -38,6 +38,11 @@ const Question = ({ question, onNext, onShowHint }) => {
 
   const handleAnswerClick = (index) => {
     setSelectedAnswer(index)
+    if (index === question.answer_index) {
+      increaseScore()
+    } else {
+      setIsShowAnswer(true)
+    }
   }
 
   return (
